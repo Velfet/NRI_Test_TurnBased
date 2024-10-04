@@ -6,6 +6,7 @@ using UnityEngine.InputSystem;
 public class PlayerMovement : MonoBehaviour
 {
     [SerializeField] private float MovementSpeed;
+    [SerializeField] private Transform PlayerOverworld_TF;
 
     private Vector2 PlayerMoveVector;
     private MyInputManager inputManager;
@@ -51,7 +52,7 @@ public class PlayerMovement : MonoBehaviour
     private void FixedUpdate()
     {
         //move the player
-        transform.Translate(PlayerMoveVector * MovementSpeed);
+        PlayerOverworld_TF.Translate(PlayerMoveVector * MovementSpeed);
     }
 
     private void OpenPausePopup(InputAction.CallbackContext context)
@@ -63,7 +64,7 @@ public class PlayerMovement : MonoBehaviour
     {
         if(inputManager == null)
         {
-            inputManager = GameManager_Overworld.Instance.GetInputManager();
+            inputManager = MyGameManager.Instance.GetInputManager();
         }
 
         if(PlayerInputs == null)

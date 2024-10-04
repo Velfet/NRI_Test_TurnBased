@@ -1,3 +1,4 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -5,6 +6,8 @@ using UnityEngine;
 public class UnitPlayer : UnitBase
 {
     [SerializeField] private UnitActionManager_Player UnitActionManager;
+    
+    
 
     
     public override void BattleSetUp()
@@ -26,8 +29,37 @@ public class UnitPlayer : UnitBase
 
             testAction.ActivateAction();
         }
-
-
     }
+
+    // public override void UpdateCurrentHP(float alterAmount)
+    // {
+    //     base.UpdateCurrentHP(alterAmount);
+
+    //     //call hp update event
+    //     hpChangeEvent.Invoke(this);
+    // }
+
+    // public override void UpdateCurrentMP(float alterAmount)
+    // {
+    //     base.UpdateCurrentMP(alterAmount);
+
+    //     //call mp update event
+    //     mpChangeEvent.Invoke(this);
+    // }
+
+    public override void BeginAct()
+    {
+        //open player battle menu
+        //once an action has been selected and the action is available, select target depending on action
+            //select player target
+            //select enemy target
+            //select everyone
+        //after target has been selected, execute action. Remember to store the selected action in SelectedAction before executing it
+        
+        
+        
+    }
+
+    
     
 }

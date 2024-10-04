@@ -11,6 +11,31 @@ public static class MyEnum
         Friendly = 2
     }
 
+    public enum ActionTargetType
+    {
+        Self = 0,
+        Enemy = 1,
+        PartyMember = 2,
+        AllEnemies = 3,
+        AllPartyMembers = 4,
+        AllUnits = 5,
+        AllUnits_ExceptSelf = 6
+    }
+
+    public enum DamageType
+    {
+        Physical = 0,
+        Magic = 1,
+        Combination = 2,
+        Absolute = 3    //goes through defense
+    }
+
+    public enum BattleUI_UpdateType
+    {
+        HP = 0,
+        MP = 1
+    }
+
     public enum Player_Overworld_Actions_Cause
     {
         Back = 0

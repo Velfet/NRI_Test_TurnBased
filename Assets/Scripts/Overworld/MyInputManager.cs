@@ -43,6 +43,19 @@ public class MyInputManager : MonoBehaviour
         PlayerInputs.Overworld.Disable();
     }
 
+    private void Toggle_PlayerBattleInputs(bool newState)
+    {
+        if(newState == true)
+        {
+            PlayerInputs.Battle.Enable();
+        }
+        else
+        {
+            PlayerInputs.Battle.Disable();
+        }
+    }
+
+
     public void SubscribeTo_Player_Overworld_Action(MyEnum.Player_Overworld_Actions_Cause theAction, Action<InputAction.CallbackContext> theSubscribedAction, MyEnum.Player_Overworld_Actions_Effect theSubscribedActionID)
     {
         if(theAction == MyEnum.Player_Overworld_Actions_Cause.Back)

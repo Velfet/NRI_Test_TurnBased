@@ -94,7 +94,7 @@ public class PopupManager : MonoBehaviour
     {
         if(myInputManager == null)
         {
-            myInputManager = GameManager_Overworld.Instance.GetInputManager();
+            myInputManager = MyGameManager.Instance.GetInputManager();
         }
 
         if(PlayerInputs == null)
