@@ -6,6 +6,7 @@ using UnityEngine.UI;
 
 public class BasePanel : MonoBehaviour
 {
+    [SerializeField] protected GameObject SelectedIndicator_GO;
     [SerializeField] protected Image UnitIconImg;
     [SerializeField] protected TextMeshProUGUI HPAmountText;
 
@@ -30,5 +31,14 @@ public class BasePanel : MonoBehaviour
     {
         UnitIconImg.sprite = iconData.theSprite;
         UnitIconImg.color = iconData.theColor;
+    }
+
+    public void Toggle_SelectedIndicator(bool newStatus)
+    {
+        if(SelectedIndicator_GO == null)
+        {
+            Debug.LogWarning("Select indicator is null");
+        }
+        SelectedIndicator_GO.SetActive(newStatus);
     }
 }

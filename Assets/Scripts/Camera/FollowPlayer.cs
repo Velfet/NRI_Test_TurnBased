@@ -9,6 +9,14 @@ public class FollowPlayer : MonoBehaviour
     public float cameraOffsetY = 3f;
 
 
+
+    private void Start()
+    {
+        //get reference of player
+        PlayerManager player = GameObject.FindGameObjectWithTag("Player").GetComponent<PlayerManager>();
+        //get reference to player transform
+        playerTransform = player.GetPlayerOverworld().transform;
+    }
     
     void Update()
     {

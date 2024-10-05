@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class PlayerUnitBattlePlacer : MonoBehaviour
 {
-    [SerializeField] private List<Vector3> PlayerUnitPositions;
+    [SerializeField] private List<GameObject> PlayerUnitPositions_GO;
     private List<GameObject> playerUnits_GO;
 
     public void PlacePlayerUnits()
@@ -25,7 +25,9 @@ public class PlayerUnitBattlePlacer : MonoBehaviour
             //add player unit to dictionary
             BattleManager.Instance.GetBattleUnitManager().AddPlayerUnit(playerUnits[i]);
             //place the player units
-            playerUnits[i].gameObject.transform.SetPositionAndRotation(PlayerUnitPositions[i], Quaternion.identity);
+            playerUnits[i].gameObject.transform.SetPositionAndRotation(PlayerUnitPositions_GO[i].transform.position, Quaternion.identity);
+            //set player units' battle sprite to be visible
+            playerUnits[i].Toggle_UnitBattleSprite(true);
             //set up the player units
             playerUnits[i].BattleSetUp();
         }

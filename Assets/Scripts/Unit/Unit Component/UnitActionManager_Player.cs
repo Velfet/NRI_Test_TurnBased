@@ -7,7 +7,7 @@ public class UnitActionManager_Player : MonoBehaviour
     [SerializeField] private BasicAttack BasicAttack;
     [SerializeField] private Defend Defend;
     //skills
-    //run
+    [SerializeField] private Run Run;
 
 
     public BasicAttack GetBasicAttack()
@@ -18,5 +18,10 @@ public class UnitActionManager_Player : MonoBehaviour
     public Defend GetDefend()
     {
         return Defend;
+    }
+
+    public Run GetRun()
+    {
+        return Run;
     }
 }

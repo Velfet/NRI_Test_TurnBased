@@ -9,7 +9,7 @@ public class BasicAttack : UnitAction
     [SerializeField] private float PhysScaling;
     [SerializeField] private float MagScaling;
 
-    private UnitBase myUnit;
+    //private UnitBase myUnit;
     
     
 
@@ -40,26 +40,8 @@ public class BasicAttack : UnitAction
     {
         myUnit = theUnit;
 
-        if(battleUnitManager == null)
-        {
-            battleUnitManager = BattleManager.Instance.GetBattleUnitManager();
-        }
-
-        //check if there is a valid target
-        potentialTargets = new List<UnitBase>();
-        
-        MyEnum.UnitType myUnitType = myUnit.GetUnitType();
-
-        if(myUnitType == MyEnum.UnitType.Player)
-        {
-            //get valid enemies
-            potentialTargets = battleUnitManager.GetEnemyUnits_Alive();
-        }
-        else if(myUnitType == MyEnum.UnitType.Enemy)
-        {
-            //get valid players
-            potentialTargets = battleUnitManager.GetPlayerUnits_Alive();
-        }
+        //might want to call a function from the base class to populate the potential target list
+        PopulatePotentialTargets();
 
         //if there are potential targets, action can be executed
         if(potentialTargets.Count > 0)

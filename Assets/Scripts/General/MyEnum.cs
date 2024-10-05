@@ -30,6 +30,13 @@ public static class MyEnum
         Absolute = 3    //goes through defense
     }
 
+    public enum PlayerPanelType
+    {
+        BaseMenu = 0,
+        SkillMenu = 1,
+        Targetting = 2
+    }
+
     public enum BattleUI_UpdateType
     {
         HP = 0,
@@ -45,5 +52,23 @@ public static class MyEnum
     {
         OpenPausePopup = 0,
         ClosePausePopup = 1
+    }
+
+    public enum Player_Battle_Actions_Cause
+    {
+        Back = 0,
+        Confirm = 1
+    }
+
+    public enum Player_Battle_Actions_Effect
+    {
+        GoBackToPreviousMenu = 0,
+        ConfirmTargetSelection = 1
+    }
+
+    public enum SceneNames
+    {
+        Overworld = 0,
+        Battle = 1
     }
 }

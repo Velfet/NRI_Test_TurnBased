@@ -7,7 +7,7 @@ public class UnitPlayer : UnitBase
 {
     [SerializeField] private UnitActionManager_Player UnitActionManager;
     
-    
+    private PlayerActionMenu playerActionMenu;
 
     
     public override void BattleSetUp()
@@ -49,7 +49,22 @@ public class UnitPlayer : UnitBase
 
     public override void BeginAct()
     {
+        base.BeginAct();
+
+        if(battleManager == null)
+        {
+            battleManager = BattleManager.Instance;
+        }
+
+        if(playerActionMenu == null)
+        {
+            playerActionMenu = battleManager.GetPlayerActionMenu();
+        }
         //open player battle menu
+        playerActionMenu.SetCurrentPlayer(this);
+        playerActionMenu.ActivateMenu(MyEnum.PlayerPanelType.BaseMenu);
+        //enable player controls in battle manager
+        battleManager.SetPlayerControlStatus(true);
         //once an action has been selected and the action is available, select target depending on action
             //select player target
             //select enemy target
@@ -60,6 +75,10 @@ public class UnitPlayer : UnitBase
         
     }
 
+    public UnitActionManager_Player GetUnitActionManager()
+    {
+        return UnitActionManager;
+    }
     
     
 }

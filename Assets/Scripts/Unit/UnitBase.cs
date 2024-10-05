@@ -10,6 +10,9 @@ public class UnitBase : MonoBehaviour
     [SerializeField] protected UnitStats_SO Stats;
     [SerializeField] protected UnitBuffs Buffs;
     [Space(20)]
+    [Space(20)]
+    [SerializeField] protected SpriteRenderer UnitBattleSprite;
+    [SerializeField] protected SpriteRenderer UnitSelectedIndicatorSprite;
     [SerializeField] protected Sprite UnitIcon;
     [SerializeField] protected Color UnitIcon_Color;
     [SerializeField] protected Animator Animator;
@@ -24,6 +27,8 @@ public class UnitBase : MonoBehaviour
 
     public Action<UnitBase> hpChangeEvent;
     public Action<UnitBase> mpChangeEvent;
+    public Action<UnitBase> unitSelectedEvent;
+    public Action<UnitBase> unitDeselectedEvent;
 
     protected UnitAction SelectedAction;
     protected TurnSystem turnSystem;
@@ -48,6 +53,7 @@ public class UnitBase : MonoBehaviour
         if(SelectedAction == null)
         {
             Debug.LogWarning("no action");
+            return;
         }
         SelectedAction.ExecuteActionEffect();
 
@@ -62,7 +68,10 @@ public class UnitBase : MonoBehaviour
 
     public virtual void BeginAct()
     {
-        Debug.Log("Default act. Need to do action to move the game along");
+        //reduce buff counter and check if buffs expire
+        BuffCounter = Math.Max(0, BuffCounter - 1);
+        CheckBuffs();
+        //Debug.Log("Default act. Need to do action to move the game along");
     }
 
     public virtual void UpdateCurrentHP(float alterAmount)
@@ -229,6 +238,29 @@ public class UnitBase : MonoBehaviour
         UpdateCurrentHP(healAmount);
     }
 
+    public void SetSelectedAction(UnitAction theAction)
+    {
+        SelectedAction = theAction;
+    }
+
+    //unit was selected by the targetting system, update visuals accordingly
+    public void SelectUnit()
+    {
+        UnitSelectedIndicatorSprite.gameObject.SetActive(true);
+        unitSelectedEvent?.Invoke(this);
+    }
+
+    //unit was de-selected by the targetting system, update visuals accordingly
+    public void DeselectUnit()
+    {
+        UnitSelectedIndicatorSprite.gameObject.SetActive(false);
+        unitDeselectedEvent?.Invoke(this);
+    }
+
+    public void Toggle_UnitBattleSprite(bool newStatus)
+    {
+        UnitBattleSprite.gameObject.SetActive(newStatus);
+    }
 
     public int GetUI_Priority()
     {

@@ -24,6 +24,9 @@ public class PlayerPartyPanel : MonoBehaviour
             //subscribe to event where player hp and mp changes
             currentUnit.hpChangeEvent += UpdateHPPanel;
             currentUnit.mpChangeEvent += UpdateMPPanel;
+            //subscrive to event where enemy is selected and deselected
+            currentUnit.unitSelectedEvent += SelectPanel;
+            currentUnit.unitDeselectedEvent += DeselectPanel;
 
             //create a party member panel for each party member, in a consistent order
             //need to make sure this happens AFTER we receive all party members
@@ -34,6 +37,22 @@ public class PlayerPartyPanel : MonoBehaviour
 
             //store connection between which unit belong to which unit panel
             partyMemberPanels_Dict.Add(currentUnit, playerPanel);
+        }
+    }
+
+    void OnDisable()
+    {
+        //unsub from events
+        for(int i = 0; i < UnitPlayers.Count; i++)
+        {
+            UnitBase currentUnit = UnitPlayers[i];
+
+            //unsubscribe to event where player hp and mp changes
+            currentUnit.hpChangeEvent -= UpdateHPPanel;
+            currentUnit.mpChangeEvent -= UpdateMPPanel;
+            //unsubscrive to event where enemy is selected and deselected
+            currentUnit.unitSelectedEvent -= SelectPanel;
+            currentUnit.unitDeselectedEvent -= DeselectPanel;
         }
     }
 
@@ -61,6 +80,22 @@ public class PlayerPartyPanel : MonoBehaviour
     public void UpdateMPPanel(UnitBase theUnit)
     {
         UpdatePanel(theUnit, MyEnum.BattleUI_UpdateType.MP);
+    }
+
+    public void SelectPanel(UnitBase theUnit)
+    {
+        //find the unit panel that belongs to the unit
+        PartyMemberPanel playerPanel = partyMemberPanels_Dict[theUnit];
+
+        playerPanel.Toggle_SelectedIndicator(true);
+    }
+
+    public void DeselectPanel(UnitBase theUnit)
+    {
+        //find the unit panel that belongs to the unit
+        PartyMemberPanel playerPanel = partyMemberPanels_Dict[theUnit];
+
+        playerPanel.Toggle_SelectedIndicator(false);
     }
 
     

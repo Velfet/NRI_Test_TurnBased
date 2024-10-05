@@ -10,11 +10,13 @@ public class MyInputManager : MonoBehaviour
     private PlayerInputActions PlayerInputs;
     private bool hasStarted = false;    //True when "Start" has occurred and false when "Start" has not yet occurred
     private Dictionary<MyEnum.Player_Overworld_Actions_Effect, Action<InputAction.CallbackContext>> Dictionary_OverworldAction;
+    private Dictionary<MyEnum.Player_Battle_Actions_Effect, Action<InputAction.CallbackContext>> Dictionary_BattleAction;
 
     private void Awake()
     {
         PlayerInputs = new PlayerInputActions();
         Dictionary_OverworldAction = new Dictionary<MyEnum.Player_Overworld_Actions_Effect, Action<InputAction.CallbackContext>>();
+        Dictionary_BattleAction = new Dictionary<MyEnum.Player_Battle_Actions_Effect, Action<InputAction.CallbackContext>>();
     }
 
     private void OnEnable()
@@ -34,27 +36,15 @@ public class MyInputManager : MonoBehaviour
     private void Start_Or_OnEnable()
     {
         //Enable certain default action maps
-        PlayerInputs.Overworld.Enable();
+        Toggle_PlayerOverworldControls(true);
     }
 
     private void OnDisable()
     {
         //Disable all action maps
-        PlayerInputs.Overworld.Disable();
+        Toggle_PlayerOverworldControls(false);
+        Toggle_PlayerBattleControls(false);
     }
-
-    private void Toggle_PlayerBattleInputs(bool newState)
-    {
-        if(newState == true)
-        {
-            PlayerInputs.Battle.Enable();
-        }
-        else
-        {
-            PlayerInputs.Battle.Disable();
-        }
-    }
-
 
     public void SubscribeTo_Player_Overworld_Action(MyEnum.Player_Overworld_Actions_Cause theAction, Action<InputAction.CallbackContext> theSubscribedAction, MyEnum.Player_Overworld_Actions_Effect theSubscribedActionID)
     {
@@ -83,9 +73,77 @@ public class MyInputManager : MonoBehaviour
         }
     }
 
+    public void SubscribeTo_Player_Battle_Action(MyEnum.Player_Battle_Actions_Cause theCause, Action<InputAction.CallbackContext> theEffect, MyEnum.Player_Battle_Actions_Effect theEffectID)
+    {
+        if(theCause == MyEnum.Player_Battle_Actions_Cause.Back)
+        {
+            //bind effect to cause
+            PlayerInputs.Battle.Back.performed += theEffect;
+            //record the binding in the action dictionary
+            Dictionary_BattleAction.Add(theEffectID, theEffect);
+        }
+        else if(theCause == MyEnum.Player_Battle_Actions_Cause.Confirm)
+        {
+            //bind effect to cause
+            PlayerInputs.Battle.Confirm.performed += theEffect;
+            //record the binding in the action dictionary
+            Dictionary_BattleAction.Add(theEffectID, theEffect);
+        }
+    }
+
+    public void UnsubscribeTo_Player_Battle_Action(MyEnum.Player_Battle_Actions_Cause theCause, MyEnum.Player_Battle_Actions_Effect theEffectID)
+    {
+        //check if dictionary entry exists
+        if(Dictionary_BattleAction.ContainsKey(theEffectID) == false)
+        {
+            Debug.LogWarning("Failed to remove " + theEffectID + " because it doesn't exist in the action dictionary");
+            return;
+        }
+
+        if(theCause == MyEnum.Player_Battle_Actions_Cause.Back)
+        {
+            //unbind effect from cause
+            PlayerInputs.Battle.Back.performed -= Dictionary_BattleAction[theEffectID];
+            //record unbinding in the action dictionary
+            Dictionary_BattleAction.Remove(theEffectID);
+        }
+        else if(theCause == MyEnum.Player_Battle_Actions_Cause.Confirm)
+        {
+            //unbind effect from cause
+            PlayerInputs.Battle.Confirm.performed -= Dictionary_BattleAction[theEffectID];
+            //record unbinding in the action dictionary
+            Dictionary_BattleAction.Remove(theEffectID);
+        }
+    }
+
     public PlayerInputActions GetPlayerInputs()
     {
         return PlayerInputs;
+    }
+
+    public void Toggle_PlayerOverworldControls(bool newStatus)
+    {
+        if(newStatus == true)
+        {
+            PlayerInputs.Overworld.Enable();
+        }
+        else
+        {
+            PlayerInputs.Overworld.Enable();
+        }
+        
+    }
+
+    public void Toggle_PlayerBattleControls(bool newState)
+    {
+        if(newState == true)
+        {
+            PlayerInputs.Battle.Enable();
+        }
+        else
+        {
+            PlayerInputs.Battle.Disable();
+        }
     }
 
 }

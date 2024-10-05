@@ -15,6 +15,7 @@ public class TurnSystem : MonoBehaviour
     //[SerializeField] private Dictionary<UnitBase, float> UnitWaitTime = new Dictionary<UnitBase, float>();  //used to keep track of which unit will act first, second, etc
 
     private BattleUnitManager battleUnitManager;
+    private bool battleIsOver = false;
 
     public void GetUnitReferences()
     {
@@ -68,6 +69,12 @@ public class TurnSystem : MonoBehaviour
 
     public void TurnProcess()
     {
+        if(battleIsOver == true)
+        {
+            Debug.Log("Enough. The battle is over");
+            return;
+        }
+
         //find unit that will act next, that is the one with the lowest wait time
         UnitBase nextUnit = GetNextUnit();
         float lowestWaitTime = nextUnit.GetCurrentWaitTime();
@@ -133,11 +140,13 @@ public class TurnSystem : MonoBehaviour
         if(battleUnitManager.GetEnemyUnits_Alive().Count == 0)
         {
             //player wins
+            battleIsOver = true;
             Debug.Log("Player wins");
         }
         else if(battleUnitManager.GetPlayerUnits_Alive().Count == 0)
         {
             //enemy wins
+            battleIsOver = true;
             Debug.Log("Enemy wins");
         }
     }

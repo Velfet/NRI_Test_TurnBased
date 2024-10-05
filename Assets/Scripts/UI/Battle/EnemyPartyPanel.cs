@@ -22,6 +22,9 @@ public class EnemyPartyPanel : MonoBehaviour
 
             //subscribe to event where enemy hp
             currentUnit.hpChangeEvent += UpdatePanel;
+            //subscribe to event where enemy is selected and deselected
+            currentUnit.unitSelectedEvent += SelectPanel;
+            currentUnit.unitDeselectedEvent += DeselectPanel;
 
             //create a base panel for each enemy
             //need to make sure this happens AFTER we receive all enemies
@@ -35,12 +38,43 @@ public class EnemyPartyPanel : MonoBehaviour
         }
     }
 
+    void OnDisable()
+    {
+        //unsub from events
+        for(int i = 0; i < UnitEnemies.Count; i++)
+        {
+            UnitBase currentUnit = UnitEnemies[i];
+
+            //unsubscribe to event where enemy hp
+            currentUnit.hpChangeEvent -= UpdatePanel;
+            //unsubscribe to event where enemy is selected and deselected
+            currentUnit.unitSelectedEvent -= SelectPanel;
+            currentUnit.unitDeselectedEvent -= DeselectPanel;
+        }
+    }
+
     public void UpdatePanel(UnitBase theUnit)
     {
         //find the unit panel that belongs to the unit
         BasePanel enemyPanel = enemyPanels_Dict[theUnit];
 
         enemyPanel.UpdateHP_UI(theUnit.GetCurrentHP());
+    }
+
+    public void SelectPanel(UnitBase theUnit)
+    {
+        //find the unit panel that belongs to the unit
+        BasePanel enemyPanel = enemyPanels_Dict[theUnit];
+
+        enemyPanel.Toggle_SelectedIndicator(true);
+    }
+
+    public void DeselectPanel(UnitBase theUnit)
+    {
+        //find the unit panel that belongs to the unit
+        BasePanel enemyPanel = enemyPanels_Dict[theUnit];
+
+        enemyPanel.Toggle_SelectedIndicator(false);
     }
 
 }

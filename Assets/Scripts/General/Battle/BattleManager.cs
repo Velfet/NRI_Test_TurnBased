@@ -1,3 +1,4 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -8,9 +9,15 @@ public class BattleManager : Singleton<BattleManager>
     [SerializeField] private EnemySpawner EnemySpawner;
     [SerializeField] private PlayerUnitBattlePlacer PlayerUnitBattlePlacer;
     [SerializeField] private BattleUnitManager BattleUnitManager;
+    [SerializeField] private TargetSystem TargetSystem;
     [Space(20)]
     [SerializeField] private PlayerPartyPanel PlayerPartyPanel;
     [SerializeField] private EnemyPartyPanel EnemyPartyPanel;
+    [SerializeField] private PlayerActionMenu PlayerActionMenu;
+    [Space(20)]
+    [SerializeField] private bool IsPlayerControlEnabled = true;
+
+    private MyInputManager inputManager;
 
     public override void Awake()
     {
@@ -29,7 +36,24 @@ public class BattleManager : Singleton<BattleManager>
         EnemyPartyPanel.SetupPanel();
         //turn system need to get references to all units in battle
         TurnSystem.GetUnitReferences();
-        
+
+        if (inputManager == null)
+        {
+            inputManager = MyGameManager.Instance.GetInputManager();
+        }
+        //disable overworld controls
+        inputManager.Toggle_PlayerOverworldControls(false);
+        //enable battle controls
+        inputManager.Toggle_PlayerBattleControls(true);
+        //sub back button here
+        inputManager.SubscribeTo_Player_Battle_Action(MyEnum.Player_Battle_Actions_Cause.Back, PlayerActionMenu.GoBackToPreviousMenu, MyEnum.Player_Battle_Actions_Effect.GoBackToPreviousMenu);
+
+    }
+
+    private void OnDisable()
+    {
+        //unsubscribe back button
+        inputManager.UnsubscribeTo_Player_Battle_Action(MyEnum.Player_Battle_Actions_Cause.Back, MyEnum.Player_Battle_Actions_Effect.GoBackToPreviousMenu);
     }
 
     public TurnSystem GetTurnSystem()
@@ -92,6 +116,27 @@ public class BattleManager : Singleton<BattleManager>
         return EnemyPartyPanel;
     }
 
+    public TargetSystem GetTargetSystem()
+    {
+        if(TargetSystem == null)
+        {
+            GetReferences();
+        }
+
+        return TargetSystem;
+    }
+
+    public PlayerActionMenu GetPlayerActionMenu()
+    {
+        if(PlayerActionMenu == null)
+        {
+            GetReferences();
+        }
+
+        return PlayerActionMenu;
+    }
+
+
     private void GetReferences()
     {
         if(TurnSystem == null)
@@ -124,6 +169,26 @@ public class BattleManager : Singleton<BattleManager>
             EnemyPartyPanel = GetComponentInChildren<EnemyPartyPanel>();
         }
 
+        if(TargetSystem == null)
+        {
+            TargetSystem = GetComponentInChildren<TargetSystem>();
+        }
 
+        if(PlayerActionMenu == null)
+        {
+            PlayerActionMenu = GetComponentInChildren<PlayerActionMenu>();
+        }
+
+
+    }
+
+    public void SetPlayerControlStatus(bool newStatus)
+    {
+        IsPlayerControlEnabled = newStatus;
+    }
+
+    public bool GetPlayerControlStatus()
+    {
+        return IsPlayerControlEnabled;
     }
 }

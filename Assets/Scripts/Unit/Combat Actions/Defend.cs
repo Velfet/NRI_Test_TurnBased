@@ -4,21 +4,11 @@ using UnityEngine;
 
 public class Defend : UnitAction
 {
-    private UnitBase myUnit;
+    //private UnitBase myUnit;
 
     public override void ActivateAction()
     {
         //request a target
-        // if(myUnit == null)
-        // {
-        //     Debug.Log("myunit is null");
-        // }
-
-        // if(targetUnits[0] == null)
-        // {
-
-        // }
-
         targetUnits[0] = myUnit;
         //play animation
         myUnit.StartAnimation(CombatActionData.AnimClipName);        
@@ -41,14 +31,11 @@ public class Defend : UnitAction
     {
         myUnit = theUnit;
 
-        //check if there is a valid target
-        potentialTargets = new List<UnitBase>
-        {
-            myUnit
-        };
+        //might want to call a function from the base class to populate the potential target list
+        PopulatePotentialTargets();
 
         
-
+        //should always be able to defend
         return true;
     }
 
