@@ -15,6 +15,8 @@ public class BasicAttack : UnitAction
 
     public override void ActivateAction()
     {
+        //show action name UI
+        base.ActivateAction();
         //request a target, this should already happen in "FinalizeTarget"
         //targetUnits[0] = myUnit;
         //play animation
@@ -24,9 +26,10 @@ public class BasicAttack : UnitAction
 
     public override void ExecuteActionEffect()
     {
+        //hide action name UI
+        base.ExecuteActionEffect();
         //attack the target once animation finishes
-        float damageAmount = myUnit.GetFinalPhysAtk() * (1f + PhysScaling);
-        damageAmount += myUnit.GetFinalMagAtk() * (1f + MagScaling);
+        float damageAmount = GetDamageAmount(PhysScaling, MagScaling);
 
         targetUnits[0].DamageUnit(damageAmount, DamageType);
     }

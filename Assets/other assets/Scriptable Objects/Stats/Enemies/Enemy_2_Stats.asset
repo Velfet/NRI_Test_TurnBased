@@ -15,8 +15,8 @@ MonoBehaviour:
   Name: Slink
   MaxHealth: 35
   MaxMP: 0
-  PhysAtk: 6
-  MagAtk: 9
+  PhysAtk: 7
+  MagAtk: 12
   PhysDef: 6
   MagDef: 13
   Spd: 8

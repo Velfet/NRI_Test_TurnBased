@@ -151,4 +151,9 @@ public class TurnSystem : MonoBehaviour
         }
     }
 
+    public void SetBattleIsOver(bool newStatus)
+    {
+        battleIsOver = newStatus;
+    }
+
 }

@@ -6,8 +6,8 @@ public class UnitActionManager_Player : MonoBehaviour
 {
     [SerializeField] private BasicAttack BasicAttack;
     [SerializeField] private Defend Defend;
-    //skills
     [SerializeField] private Run Run;
+    [SerializeField] private List<UnitAction> Skills;
 
 
     public BasicAttack GetBasicAttack()
@@ -23,5 +23,10 @@ public class UnitActionManager_Player : MonoBehaviour
     public Run GetRun()
     {
         return Run;
+    }
+
+    public List<UnitAction> GetUnitSkills()
+    {
+        return Skills;
     }
 }

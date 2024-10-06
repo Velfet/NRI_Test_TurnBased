@@ -11,22 +11,31 @@ public class PlayerActionMenu : MonoBehaviour
     [SerializeField] private Stack<IActionPanel> ActivePanelStacks = new Stack<IActionPanel>();
     [Space(20)]
     //keeps reference of all player action menu.
-    [SerializeField] private BaseActionMenu BaseMenu;
-    [SerializeField] private IActionPanel SkillMenu;    //need to change this type to something else, interface can't appear in the inspector
+    [SerializeField] private MainActionMenu MainActionMenu;
+    [SerializeField] private SkillActionMenu SkillMenu;    //need to change this type to something else, interface can't appear in the inspector
 
-    public void SetCurrentPlayer(UnitPlayer newCurrentPlayer)
+    private void SetCurrentPlayer(UnitPlayer newCurrentPlayer)
     {
         CurrentPlayerUnit = newCurrentPlayer;
     }
 
+    public void SetupMenus(UnitPlayer newCurrentPlayer, MyEnum.PlayerPanelType panelType_defaultMenu)
+    {
+        //set unit
+        SetCurrentPlayer(newCurrentPlayer);
+        //sets up skill menu
+        SetupSkillMenu();
+        //activate default menu
+        ActivateMenu(panelType_defaultMenu);
+    }
 
-    //SetCurrentPlayer needs to run first
+    
     public void ActivateMenu(MyEnum.PlayerPanelType panelType)
     {
         IActionPanel activatePanel = null;
-        if(panelType == MyEnum.PlayerPanelType.BaseMenu)
+        if(panelType == MyEnum.PlayerPanelType.MainActionMenu)
         {
-            activatePanel = BaseMenu;
+            activatePanel = MainActionMenu;
         }
         else if(panelType == MyEnum.PlayerPanelType.SkillMenu)
         {
@@ -102,5 +111,10 @@ public class PlayerActionMenu : MonoBehaviour
 
         //empty the active panel stack
         ActivePanelStacks.Clear();
+    }
+
+    private void SetupSkillMenu()
+    {
+        SkillMenu.SetupPanel(CurrentPlayerUnit);
     }
 }

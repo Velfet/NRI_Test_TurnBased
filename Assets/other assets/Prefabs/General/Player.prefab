@@ -303,7 +303,8 @@ MonoBehaviour:
   - {fileID: 7768948030572413708}
   - {fileID: 6290332628582308348}
   PlayerSprite: {fileID: 9054724600799584487}
-  PlayerOverworld_GO: {fileID: 0}
+  PlayerOverworld: {fileID: 7272443587905641632}
+  PreviousScene: 
 --- !u!1 &4740984907339301261
 GameObject:
   m_ObjectHideFlags: 0
@@ -581,6 +582,11 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   MovementSpeed: 0.38
   PlayerOverworld_TF: {fileID: 6638953004332188691}
+  RunAway_IframeDuration: 3.5
+  PlayerOverworldSprite: {fileID: 9054724600799584487}
+  DullColor: {r: 0.6117647, g: 0.47058827, b: 0, a: 0.3254902}
+  ActiveColor: {r: 0.6117647, g: 0.47058827, b: 0, a: 1}
+  Collider: {fileID: 2859468701726821464}
 --- !u!1 &4875496935982252320
 GameObject:
   m_ObjectHideFlags: 0
@@ -593,6 +599,9 @@ GameObject:
   - component: {fileID: 1334578132024864652}
   - component: {fileID: 7170864544223809337}
   - component: {fileID: 3574999784993546987}
+  - component: {fileID: 2690965636704077883}
+  - component: {fileID: 1891899048242633808}
+  - component: {fileID: 2482005311648213080}
   - component: {fileID: 6532344196705709176}
   m_Layer: 0
   m_Name: Combat Actions
@@ -667,6 +676,65 @@ MonoBehaviour:
   TargetType: 0
   potentialTargets: []
   CombatActionData: {fileID: 11400000, guid: 78e3d224e07ed4340b7b21fb231d48d9, type: 2}
+--- !u!114 &2690965636704077883
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4875496935982252320}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 3ea54d0a979a3274081bb5dfb6206100, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  myUnit: {fileID: 0}
+  TargetType: 3
+  potentialTargets: []
+  CombatActionData: {fileID: 11400000, guid: 7476dc2586a255a48852442b6692e6c4, type: 2}
+  DamageType: 2
+  PhysScaling: 1
+  MagScaling: 0.1
+--- !u!114 &1891899048242633808
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4875496935982252320}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: bb484b12a30b3e247a16b22c85e4777d, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  myUnit: {fileID: 0}
+  TargetType: 1
+  potentialTargets: []
+  CombatActionData: {fileID: 11400000, guid: d9b19e924e31443448f61c053cbc4893, type: 2}
+  DamageType: 0
+  PhysScaling: 1.45
+  MagScaling: 0
+--- !u!114 &2482005311648213080
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4875496935982252320}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: bef16dab2f97edd4b92f95096b30bfc8, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  myUnit: {fileID: 0}
+  TargetType: 0
+  potentialTargets: []
+  CombatActionData: {fileID: 11400000, guid: 5b1d11088e25e8c489943c17919a9d7a, type: 2}
+  PhysDefScaling: 1.5
+  MagDefScaling: 0
+  PhysAtkBuff: 0.4
+  MagAtkBuff: 0.2
+  BuffDuration: 3
 --- !u!114 &6532344196705709176
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -682,6 +750,10 @@ MonoBehaviour:
   BasicAttack: {fileID: 1334578132024864652}
   Defend: {fileID: 7170864544223809337}
   Run: {fileID: 3574999784993546987}
+  Skills:
+  - {fileID: 2690965636704077883}
+  - {fileID: 1891899048242633808}
+  - {fileID: 2482005311648213080}
 --- !u!1 &6890709951066943599
 GameObject:
   m_ObjectHideFlags: 0
@@ -882,6 +954,9 @@ GameObject:
   - component: {fileID: 5740629866285778395}
   - component: {fileID: 7025970282338435069}
   - component: {fileID: 8226058706522805501}
+  - component: {fileID: 6114369370547785805}
+  - component: {fileID: 2161080504189223510}
+  - component: {fileID: 4173419511502533329}
   - component: {fileID: 4038553385629094063}
   m_Layer: 0
   m_Name: Combat Actions
@@ -921,7 +996,7 @@ MonoBehaviour:
   TargetType: 1
   potentialTargets: []
   CombatActionData: {fileID: 11400000, guid: d5f0dec72df25f3469805fd7300d5c6a, type: 2}
-  DamageType: 0
+  DamageType: 2
   PhysScaling: 0.2
   MagScaling: 0.8
 --- !u!114 &7025970282338435069
@@ -956,6 +1031,62 @@ MonoBehaviour:
   TargetType: 0
   potentialTargets: []
   CombatActionData: {fileID: 11400000, guid: 78e3d224e07ed4340b7b21fb231d48d9, type: 2}
+--- !u!114 &6114369370547785805
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8911296241777138029}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 255bf539a7c58714688998cc546e1a66, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  myUnit: {fileID: 0}
+  TargetType: 1
+  potentialTargets: []
+  CombatActionData: {fileID: 11400000, guid: dce5ad0b69bf16a4b8722415f95181f6, type: 2}
+  DamageType: 2
+  PhysScaling: 1
+  MagScaling: 0.4
+--- !u!114 &2161080504189223510
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8911296241777138029}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: b32fc004c9c01704bab815b27df796e1, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  myUnit: {fileID: 0}
+  TargetType: 2
+  potentialTargets: []
+  CombatActionData: {fileID: 11400000, guid: fa0cf07e0be147646aeeb57fa31575ce, type: 2}
+  PhysAtkScaling: 0.2
+  MagAtkScaling: 1.2
+--- !u!114 &4173419511502533329
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8911296241777138029}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 3ffaf38ea2b46ac44bd7c79419750842, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  myUnit: {fileID: 0}
+  TargetType: 6
+  potentialTargets: []
+  CombatActionData: {fileID: 11400000, guid: 014d4645e2ff1e24babf7cf5476a5e77, type: 2}
+  DamageType: 2
+  PhysScaling: 0.1
+  MagScaling: 1.2
 --- !u!114 &4038553385629094063
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -971,3 +1102,7 @@ MonoBehaviour:
   BasicAttack: {fileID: 5740629866285778395}
   Defend: {fileID: 7025970282338435069}
   Run: {fileID: 8226058706522805501}
+  Skills:
+  - {fileID: 6114369370547785805}
+  - {fileID: 2161080504189223510}
+  - {fileID: 4173419511502533329}

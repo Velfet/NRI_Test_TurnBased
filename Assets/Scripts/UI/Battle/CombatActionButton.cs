@@ -3,19 +3,16 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 
-public class CombatActionButton : MonoBehaviour, IButton
+public class CombatActionButton : BaseCombatButton, IButton
 {
-    [SerializeField] private Button MyButton;
     // need reference to the action itself and the unit the action belongs to
-    [SerializeField] private BaseActionMenu MyActionMenu;
-    [SerializeField] private UnitAction CombatAction;
-    [SerializeField] private UnitBase CurrentUnit;
-    [SerializeField] private bool ButtonIsInteractable = true;
+    [SerializeField] protected UnitAction CombatAction;
+    [SerializeField] protected UnitBase CurrentUnit;
 
-    private BattleManager battleManager;
-    private TargetSystem targetSystem;
+    protected BattleManager battleManager;
+    protected TargetSystem targetSystem;
 
-    public void SetCombatAction(UnitAction theAction, UnitBase theUnit)
+    public virtual void SetCombatAction(UnitAction theAction, UnitBase theUnit)
     {
         CombatAction = theAction;
         CurrentUnit = theUnit;
@@ -88,14 +85,4 @@ public class CombatActionButton : MonoBehaviour, IButton
         
     }
 
-    public void SetButtonInteractable(bool newStatus)
-    {
-        ButtonIsInteractable = newStatus;
-    }
-
-    public void SetButtonSelected()
-    {
-        //set this button as selected
-        MyButton.Select();
-    }
 }

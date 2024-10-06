@@ -8,6 +8,8 @@ public class Defend : UnitAction
 
     public override void ActivateAction()
     {
+        //show action name UI
+        base.ActivateAction();
         //request a target
         targetUnits[0] = myUnit;
         //play animation
@@ -16,6 +18,8 @@ public class Defend : UnitAction
 
     public override void ExecuteActionEffect()
     {
+        //hide action name UI
+        base.ExecuteActionEffect();
         //once animation finishes, increase defense with buff
         myUnit.IncreaseBuffCounter(1);
         myUnit.GetUnitBuffs().Set_PhysDef_Buff(0.3f);

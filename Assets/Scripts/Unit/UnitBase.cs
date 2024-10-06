@@ -136,6 +136,7 @@ public class UnitBase : MonoBehaviour
 
     public void StartAnimation(string clipName)
     {
+        //Debug.LogWarning("Clip name: " + clipName);
         Animator.Play(clipName);
     }
 

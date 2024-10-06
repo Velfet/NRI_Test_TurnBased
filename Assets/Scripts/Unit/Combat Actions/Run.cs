@@ -7,6 +7,8 @@ public class Run : UnitAction
 {
     public override void ActivateAction()
     {
+        //show action name UI
+        base.ActivateAction();
         //request a target
         targetUnits[0] = myUnit;
         
@@ -27,6 +29,12 @@ public class Run : UnitAction
 
     public override void ExecuteActionEffect()
     {
+        //hide action name UI
+        base.ExecuteActionEffect();
+        //disable next turn
+        TurnSystem turnSystem = BattleManager.Instance.GetTurnSystem();
+        turnSystem.SetBattleIsOver(true);
+
         //once animation finishes, run away
         //change scene to overworld
         SceneManager.LoadScene(MyEnum.SceneNames.Overworld.ToString());

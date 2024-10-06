@@ -14,6 +14,7 @@ public class BattleManager : Singleton<BattleManager>
     [SerializeField] private PlayerPartyPanel PlayerPartyPanel;
     [SerializeField] private EnemyPartyPanel EnemyPartyPanel;
     [SerializeField] private PlayerActionMenu PlayerActionMenu;
+    [SerializeField] private CombatActionUI CombatActionUI;
     [Space(20)]
     [SerializeField] private bool IsPlayerControlEnabled = true;
 
@@ -136,6 +137,16 @@ public class BattleManager : Singleton<BattleManager>
         return PlayerActionMenu;
     }
 
+    public CombatActionUI GetCombatActionUI()
+    {
+        if(CombatActionUI == null)
+        {
+            GetReferences();
+        }
+
+        return CombatActionUI;
+    }
+
 
     private void GetReferences()
     {
@@ -159,6 +170,13 @@ public class BattleManager : Singleton<BattleManager>
             PlayerUnitBattlePlacer = GetComponentInChildren<PlayerUnitBattlePlacer>();
         }
 
+        
+        if(TargetSystem == null)
+        {
+            TargetSystem = GetComponentInChildren<TargetSystem>();
+        }
+
+        /*
         if(PlayerPartyPanel == null)
         {
             PlayerPartyPanel = GetComponentInChildren<PlayerPartyPanel>();
@@ -169,16 +187,16 @@ public class BattleManager : Singleton<BattleManager>
             EnemyPartyPanel = GetComponentInChildren<EnemyPartyPanel>();
         }
 
-        if(TargetSystem == null)
-        {
-            TargetSystem = GetComponentInChildren<TargetSystem>();
-        }
-
         if(PlayerActionMenu == null)
         {
             PlayerActionMenu = GetComponentInChildren<PlayerActionMenu>();
         }
 
+        if(CombatActionUI == null)
+        {
+            CombatActionUI = GetComponentInChildren<CombatActionUI>();
+        }
+        */
 
     }
 

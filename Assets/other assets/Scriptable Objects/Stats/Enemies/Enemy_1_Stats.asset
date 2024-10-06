@@ -15,8 +15,8 @@ MonoBehaviour:
   Name: Gobo
   MaxHealth: 45
   MaxMP: 0
-  PhysAtk: 9
-  MagAtk: 4
+  PhysAtk: 11
+  MagAtk: 6
   PhysDef: 12
   MagDef: 6
   Spd: 7

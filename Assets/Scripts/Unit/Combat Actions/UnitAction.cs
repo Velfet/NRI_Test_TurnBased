@@ -11,17 +11,37 @@ public class UnitAction : MonoBehaviour, ICombatAction
     [SerializeField] protected CombatActionData_SO CombatActionData;
 
     protected BattleUnitManager battleUnitManager;
+    protected CombatActionUI combatActionUI;
     //unit or units that will be targeted. For a different action, this might be a list instead
     protected List<UnitBase> targetUnits;
 
     public virtual void ActivateAction()
     {
+        //show action name UI
+        if(combatActionUI == null)
+        {
+            combatActionUI = BattleManager.Instance.GetCombatActionUI();
+        }
+        combatActionUI.ShowCombatActionName(CombatActionData.Name);
+
+        //consume mp
+        if(GetActionMPCost() > 0)
+        {
+            myUnit.UpdateCurrentMP(-GetActionMPCost());
+        }
+
         //play animation
 
     }
 
     public virtual void ExecuteActionEffect()
     {
+        //hide action name UI
+        if(combatActionUI == null)
+        {
+            combatActionUI = BattleManager.Instance.GetCombatActionUI();
+        }
+        combatActionUI.HideCombatActionName();
         //once animation finishes, apply the effect
 
     }
@@ -149,5 +169,49 @@ public class UnitAction : MonoBehaviour, ICombatAction
     public string GetActionName()
     {
         return CombatActionData.name;
+    }
+
+    public float GetActionMPCost()
+    {
+        return CombatActionData.MP_Cost;
+    }
+
+    protected float GetDamageAmount(float physScaling, float magScaling)
+    {
+        float damageAmount = myUnit.GetFinalPhysAtk() * (physScaling);
+        damageAmount += myUnit.GetFinalMagAtk() * (magScaling);
+
+        return damageAmount;
+    }
+
+    //healing that scales off of unit's attack
+    protected float GetHealAmount_Atk(float physATkScaling, float MagAtkScaling)
+    {
+        float healAmount = myUnit.GetFinalPhysAtk() * (physATkScaling);
+        healAmount += myUnit.GetFinalMagAtk() * (MagAtkScaling);
+
+        return healAmount;
+    }
+
+    //healing that scales off of unit's defense
+    protected float GetHealAmount_Def(float physDefScaling, float MagDefScaling)
+    {
+        float healAmount = myUnit.GetFinalPhysDef() * (physDefScaling);
+        healAmount += myUnit.GetFinalMagDef() * (MagDefScaling);
+
+        return healAmount;
+    }
+
+    //check if the unit has enough MP to perform the action
+    protected bool CheckEnoughMP()
+    {
+        if(myUnit.GetCurrentMP() >= GetActionMPCost())
+        {
+            return true;
+        }
+        else
+        {
+            return false;
+        }
     }
 }

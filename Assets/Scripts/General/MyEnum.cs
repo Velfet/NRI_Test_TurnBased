@@ -32,7 +32,7 @@ public static class MyEnum
 
     public enum PlayerPanelType
     {
-        BaseMenu = 0,
+        MainActionMenu = 0,
         SkillMenu = 1,
         Targetting = 2
     }

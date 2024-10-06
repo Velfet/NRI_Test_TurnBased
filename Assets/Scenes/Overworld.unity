@@ -133,11 +133,6 @@ Transform:
   m_CorrespondingSourceObject: {fileID: 3770116683695467225, guid: 60546e5476316a04295adda6e0113ea6, type: 3}
   m_PrefabInstance: {fileID: 3622215850898334694}
   m_PrefabAsset: {fileID: 0}
---- !u!1 &177063390 stripped
-GameObject:
-  m_CorrespondingSourceObject: {fileID: 4756391028879369699, guid: 8f5e7924628672a42b2e8df2740b2776, type: 3}
-  m_PrefabInstance: {fileID: 4493669987130832329}
-  m_PrefabAsset: {fileID: 0}
 --- !u!1 &519420028
 GameObject:
   m_ObjectHideFlags: 0
@@ -404,27 +399,6 @@ GameObject:
 --- !u!4 &1671844502 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 6638953004332188691, guid: 8f5e7924628672a42b2e8df2740b2776, type: 3}
-  m_PrefabInstance: {fileID: 4493669987130832329}
-  m_PrefabAsset: {fileID: 0}
---- !u!212 &1671844503 stripped
-SpriteRenderer:
-  m_CorrespondingSourceObject: {fileID: 9054724600799584487, guid: 8f5e7924628672a42b2e8df2740b2776, type: 3}
-  m_PrefabInstance: {fileID: 4493669987130832329}
-  m_PrefabAsset: {fileID: 0}
---- !u!114 &1671844504 stripped
-MonoBehaviour:
-  m_CorrespondingSourceObject: {fileID: 7272443587905641632, guid: 8f5e7924628672a42b2e8df2740b2776, type: 3}
-  m_PrefabInstance: {fileID: 4493669987130832329}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 177063390}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 47343f7fa72c70e42b38aee6c827df82, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
---- !u!61 &1671844506 stripped
-BoxCollider2D:
-  m_CorrespondingSourceObject: {fileID: 2859468701726821464, guid: 8f5e7924628672a42b2e8df2740b2776, type: 3}
   m_PrefabInstance: {fileID: 4493669987130832329}
   m_PrefabAsset: {fileID: 0}
 --- !u!1 &1905138544
@@ -770,50 +744,6 @@ PrefabInstance:
     - target: {fileID: 3239102761513189453, guid: 8f5e7924628672a42b2e8df2740b2776, type: 3}
       propertyPath: m_Name
       value: Player
-      objectReference: {fileID: 0}
-    - target: {fileID: 7102436493995766059, guid: 8f5e7924628672a42b2e8df2740b2776, type: 3}
-      propertyPath: PlayerOverworld
-      value: 
-      objectReference: {fileID: 1671844504}
-    - target: {fileID: 7102436493995766059, guid: 8f5e7924628672a42b2e8df2740b2776, type: 3}
-      propertyPath: PlayerOverworld_GO
-      value: 
-      objectReference: {fileID: 177063390}
-    - target: {fileID: 7272443587905641632, guid: 8f5e7924628672a42b2e8df2740b2776, type: 3}
-      propertyPath: Collider
-      value: 
-      objectReference: {fileID: 1671844506}
-    - target: {fileID: 7272443587905641632, guid: 8f5e7924628672a42b2e8df2740b2776, type: 3}
-      propertyPath: DullColor.a
-      value: 0.3254902
-      objectReference: {fileID: 0}
-    - target: {fileID: 7272443587905641632, guid: 8f5e7924628672a42b2e8df2740b2776, type: 3}
-      propertyPath: DullColor.g
-      value: 0.47058827
-      objectReference: {fileID: 0}
-    - target: {fileID: 7272443587905641632, guid: 8f5e7924628672a42b2e8df2740b2776, type: 3}
-      propertyPath: DullColor.r
-      value: 0.6117647
-      objectReference: {fileID: 0}
-    - target: {fileID: 7272443587905641632, guid: 8f5e7924628672a42b2e8df2740b2776, type: 3}
-      propertyPath: ActiveColor.a
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 7272443587905641632, guid: 8f5e7924628672a42b2e8df2740b2776, type: 3}
-      propertyPath: ActiveColor.g
-      value: 0.47058827
-      objectReference: {fileID: 0}
-    - target: {fileID: 7272443587905641632, guid: 8f5e7924628672a42b2e8df2740b2776, type: 3}
-      propertyPath: ActiveColor.r
-      value: 0.6117647
-      objectReference: {fileID: 0}
-    - target: {fileID: 7272443587905641632, guid: 8f5e7924628672a42b2e8df2740b2776, type: 3}
-      propertyPath: PlayerOverworldSprite
-      value: 
-      objectReference: {fileID: 1671844503}
-    - target: {fileID: 7272443587905641632, guid: 8f5e7924628672a42b2e8df2740b2776, type: 3}
-      propertyPath: RunAway_IframeDuration
-      value: 3.5
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []

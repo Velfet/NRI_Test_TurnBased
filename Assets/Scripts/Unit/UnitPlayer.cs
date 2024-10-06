@@ -60,9 +60,8 @@ public class UnitPlayer : UnitBase
         {
             playerActionMenu = battleManager.GetPlayerActionMenu();
         }
-        //open player battle menu
-        playerActionMenu.SetCurrentPlayer(this);
-        playerActionMenu.ActivateMenu(MyEnum.PlayerPanelType.BaseMenu);
+        //setup menus and open player battle menu
+        playerActionMenu.SetupMenus(this, MyEnum.PlayerPanelType.MainActionMenu);
         //enable player controls in battle manager
         battleManager.SetPlayerControlStatus(true);
         //once an action has been selected and the action is available, select target depending on action
