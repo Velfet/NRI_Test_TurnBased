@@ -6,7 +6,7 @@ using UnityEngine;
 public class CombatActionData_SO : ScriptableObject
 {
     //name
-    public string Name;
+    public string ActionName;
     //mp cost
     public float MP_Cost;
     //Animation clip name

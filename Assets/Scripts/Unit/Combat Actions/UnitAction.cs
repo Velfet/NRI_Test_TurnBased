@@ -22,7 +22,7 @@ public class UnitAction : MonoBehaviour, ICombatAction
         {
             combatActionUI = BattleManager.Instance.GetCombatActionUI();
         }
-        combatActionUI.ShowCombatActionName(CombatActionData.Name);
+        combatActionUI.ShowCombatActionName(CombatActionData.ActionName);
 
         //consume mp
         if(GetActionMPCost() > 0)
@@ -168,7 +168,7 @@ public class UnitAction : MonoBehaviour, ICombatAction
 
     public string GetActionName()
     {
-        return CombatActionData.name;
+        return CombatActionData.ActionName;
     }
 
     public float GetActionMPCost()

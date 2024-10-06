@@ -12,6 +12,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 12377304a0a97874b8ebdc3a1bc2901e, type: 3}
   m_Name: BasicAttack_Gil
   m_EditorClassIdentifier: 
-  Name: Quickshot
+  ActionName: Quickshot
   MP_Cost: 0
   AnimClipName: basic

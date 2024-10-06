@@ -32,12 +32,12 @@ public class TargetSystem : MonoBehaviour
         //if target type is single target, select single member in list (self, enemy, party member)
         if(targetType == MyEnum.ActionTargetType.Self || targetType == MyEnum.ActionTargetType.Enemy || targetType == MyEnum.ActionTargetType.PartyMember)
         {
-            //default, select the first unit on the list
-            currentTargets.Add(potentialTargets[0]);
+            //default, select the last unit on the list
+            currentTargets.Add(potentialTargets[potentialTargets.Count-1]);
             //activate select visual
             currentTargets[0].SelectUnit();
             //set current target index to 0
-            CurrentTargetIndex = 0;
+            CurrentTargetIndex = potentialTargets.Count-1;
         }
 
         //if target type is multiple target, select all in list (all enemies, all party members, all units, all units except self)
