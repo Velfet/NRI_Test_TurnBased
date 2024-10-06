@@ -16,7 +16,7 @@ MonoBehaviour:
   MaxHealth: 35
   MaxMP: 0
   PhysAtk: 7
-  MagAtk: 12
+  MagAtk: 24
   PhysDef: 6
-  MagDef: 13
+  MagDef: 11
   Spd: 8

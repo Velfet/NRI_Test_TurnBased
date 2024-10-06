@@ -37,6 +37,12 @@ public static class MyEnum
         Targetting = 2
     }
 
+    public enum NumberType
+    {
+        Damage = 0,
+        Heal = 1
+    }
+
     public enum BattleUI_UpdateType
     {
         HP = 0,

@@ -1,31 +1,15 @@
 using System.Collections;
 using System.Collections.Generic;
+using Unity.VisualScripting;
 using UnityEngine;
 using UnityEngine.InputSystem;
 
-public class PopupManager : MonoBehaviour
+public class PopupManager : PopupManagerBase
 {
     [SerializeField] private PausePopup PausePopup;
     
-    private bool hasStarted = false;
-    private MyInputManager myInputManager;
-    private PlayerInputActions PlayerInputs;
 
-    private void OnEnable()
-    {
-        if(hasStarted == true)
-        {
-            Start_Or_OnEnable();
-        }
-    }
-
-    private void Start()
-    {
-        hasStarted = true;
-        Start_Or_OnEnable();
-    }
-
-    private void Start_Or_OnEnable()
+    protected override void Start_Or_OnEnable()
     {
         GetReferences();
         //Subscribe to events
@@ -90,7 +74,7 @@ public class PopupManager : MonoBehaviour
         Time.timeScale = 1;
     }
 
-    private void GetReferences()
+    protected override void GetReferences()
     {
         if(myInputManager == null)
         {

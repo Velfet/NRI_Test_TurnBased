@@ -59,10 +59,15 @@ public class PlayerManager : MonoBehaviour
             Toggle_PlayerSprite(true);
         }
 
-        //if previous scene was battle, begin IFrame
+        //if previous scene was battle, begin IFrame. Also hide player battle sprite
         if(PreviousScene == MyEnum.SceneNames.Battle.ToString())
         {
             PlayerOverworld.Start_RunAwayIFrame();
+
+            foreach(UnitPlayer unitPlayer in UnitPlayers)
+            {
+                unitPlayer.Toggle_UnitBattleSprite(false);
+            }
         }
 
         //overwrite previous scene name

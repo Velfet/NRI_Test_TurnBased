@@ -14,6 +14,9 @@ public class UnitPlayer : UnitBase
     {
         //don't change health and mp to max value after beginning a battle
         UnitType = MyEnum.UnitType.Player;
+        //reset buffs
+        BuffCounter = 0;
+        CheckBuffs();
     }
 
     [ContextMenu("test defend")]

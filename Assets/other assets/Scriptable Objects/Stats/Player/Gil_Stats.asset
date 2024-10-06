@@ -13,10 +13,10 @@ MonoBehaviour:
   m_Name: Gil_Stats
   m_EditorClassIdentifier: 
   Name: Gil
-  MaxHealth: 80
-  MaxMP: 40
+  MaxHealth: 75
+  MaxMP: 50
   PhysAtk: 12
-  MagAtk: 20
+  MagAtk: 21
   PhysDef: 14
-  MagDef: 21
+  MagDef: 19
   Spd: 8

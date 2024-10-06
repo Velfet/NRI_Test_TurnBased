@@ -19,6 +19,9 @@ public class TargetSystem : MonoBehaviour
     public void BeginTargetting(CombatActionButton newClient, List<UnitBase> potentialTargets, MyEnum.ActionTargetType targetType)
     {
         PotentialTargets = potentialTargets;
+        //sort the targets based on their y position
+        potentialTargets.Sort((a,b) => a.transform.position.y.CompareTo(b.transform.position.y));
+
         //clear list
         currentTargets = new List<UnitBase>();
         //set current target index to -1
@@ -128,9 +131,6 @@ public class TargetSystem : MonoBehaviour
                 playerActionMenu.EmptyActivePanelStack();
                 //contact button to execute action, which will end the turn
                 Client_CombatActionButton.ReceiveFinalizedTargets(currentTargets);
-
-                //deseletc all selected units
-                //aaa
             }
 
             //detect input to cancel target selection, need to contact PlayerActionMenu to go back to previous panel

@@ -10,13 +10,13 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 26444e16559fdd74599aa28dcc443b19, type: 3}
-  m_Name: Fia_Stats
+  m_Name: Enemy_4_Stats
   m_EditorClassIdentifier: 
-  Name: Fia
-  MaxHealth: 95
-  MaxMP: 35
-  PhysAtk: 18
-  MagAtk: 13
-  PhysDef: 22
-  MagDef: 12
-  Spd: 6
+  Name: Slunker
+  MaxHealth: 45
+  MaxMP: 0
+  PhysAtk: 7
+  MagAtk: 28
+  PhysDef: 6
+  MagDef: 14
+  Spd: 8

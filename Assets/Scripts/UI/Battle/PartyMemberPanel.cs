@@ -22,6 +22,6 @@ public class PartyMemberPanel : BasePanel
 
     public void UpdateMP_UI(float currentMP)
     {
-        MPAmountText.text = currentMP.ToString()+"/"+MaxMP.ToString();
+        MPAmountText.text = NumberToString.GetStringFromNumber_ShowDecimalOnlyIfExist(currentMP)+"/"+NumberToString.GetStringFromNumber_ShowDecimalOnlyIfExist(MaxMP);
     }
 }

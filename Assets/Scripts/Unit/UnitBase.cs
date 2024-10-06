@@ -33,14 +33,11 @@ public class UnitBase : MonoBehaviour
     protected UnitAction SelectedAction;
     protected TurnSystem turnSystem;
     protected BattleManager battleManager;
+    protected CombatActionUI combatActionUI;
 
     public virtual void BattleSetUp()
     {
-        //reset defeated status
-        IsDefeated = false;
-        //if friendly or enemy, set current hp and mp to their max
-        CurrentHP = Stats.MaxHealth;
-        CurrentMP = Stats.MaxMP;
+        RefreshUnit();
         //reset buffs
         BuffCounter = 0;
         CheckBuffs();
@@ -225,7 +222,13 @@ public class UnitBase : MonoBehaviour
 
         finalDamageAmount = Math.Max(1, finalDamageAmount - reduceAmount);
 
+
+        if(combatActionUI == null)
+        {
+            combatActionUI = BattleManager.Instance.GetCombatActionUI();
+        }
         //do damage number visual here
+        combatActionUI.ActivateNumber(finalDamageAmount, UnitSelectedIndicatorSprite.gameObject.transform.position, MyEnum.NumberType.Damage);
 
         //affect HP
         UpdateCurrentHP(-finalDamageAmount);
@@ -233,7 +236,13 @@ public class UnitBase : MonoBehaviour
 
     public void HealUnit(float healAmount)
     {
+        
+        if(combatActionUI == null)
+        {
+            combatActionUI = BattleManager.Instance.GetCombatActionUI();
+        }
         //do heal visual here
+        combatActionUI.ActivateNumber(healAmount, UnitSelectedIndicatorSprite.gameObject.transform.position, MyEnum.NumberType.Heal);
 
         //affet HP
         UpdateCurrentHP(healAmount);
@@ -266,6 +275,15 @@ public class UnitBase : MonoBehaviour
     public int GetUI_Priority()
     {
         return UI_Priority;
+    }
+
+    public void RefreshUnit()
+    {
+        //reset defeated status
+        IsDefeated = false;
+        //set current hp and mp to their max
+        CurrentHP = Stats.MaxHealth;
+        CurrentMP = Stats.MaxMP;
     }
 
 }

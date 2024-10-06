@@ -4,9 +4,9 @@ using UnityEngine;
 
 public class BasePopup : MonoBehaviour
 {
-    [SerializeField] private GameObject Popup_GO;
+    [SerializeField] protected GameObject Popup_GO;
 
-    private bool isPopupActive = false;
+    protected bool isPopupActive = false;
 
     public virtual void ActivatePopup()
     {

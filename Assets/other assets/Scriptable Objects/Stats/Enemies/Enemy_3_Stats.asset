@@ -10,13 +10,13 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 26444e16559fdd74599aa28dcc443b19, type: 3}
-  m_Name: Fia_Stats
+  m_Name: Enemy_3_Stats
   m_EditorClassIdentifier: 
-  Name: Fia
-  MaxHealth: 95
-  MaxMP: 35
-  PhysAtk: 18
-  MagAtk: 13
-  PhysDef: 22
-  MagDef: 12
-  Spd: 6
+  Name: Gobox
+  MaxHealth: 60
+  MaxMP: 0
+  PhysAtk: 26
+  MagAtk: 6
+  PhysDef: 13
+  MagDef: 6
+  Spd: 7

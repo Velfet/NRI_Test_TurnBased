@@ -6,6 +6,7 @@ using UnityEngine;
 public class CombatActionUI : MonoBehaviour
 {
     [SerializeField] private CombatActionNameUI CombatActionName;
+    [SerializeField] private ActionNumbersManager ActionNumbersManager;
 
     public void ShowCombatActionName(string newName)
     {
@@ -15,6 +16,11 @@ public class CombatActionUI : MonoBehaviour
     public void HideCombatActionName()
     {
         CombatActionName.HideCombatActionName();
+    }
+
+    public void ActivateNumber(float numberValue, Vector3 worldPos, MyEnum.NumberType numberType)
+    {
+        ActionNumbersManager.ActivateNumber(numberValue, worldPos, numberType);
     }
 
 

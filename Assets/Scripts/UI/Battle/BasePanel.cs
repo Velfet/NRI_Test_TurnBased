@@ -24,7 +24,7 @@ public class BasePanel : MonoBehaviour
 
     public void UpdateHP_UI(float currentHP)
     {
-        HPAmountText.text = currentHP.ToString()+"/"+MaxHP.ToString();
+        HPAmountText.text = NumberToString.GetStringFromNumber_ShowDecimalOnlyIfExist(currentHP)+"/"+NumberToString.GetStringFromNumber_ShowDecimalOnlyIfExist(MaxHP);
     }
 
     public void SetIconImage((Sprite theSprite, Color theColor) iconData)
@@ -41,4 +41,5 @@ public class BasePanel : MonoBehaviour
         }
         SelectedIndicator_GO.SetActive(newStatus);
     }
+
 }

@@ -15,6 +15,7 @@ public class TurnSystem : MonoBehaviour
     //[SerializeField] private Dictionary<UnitBase, float> UnitWaitTime = new Dictionary<UnitBase, float>();  //used to keep track of which unit will act first, second, etc
 
     private BattleUnitManager battleUnitManager;
+    private PopupManager_Battle popupManager_Battle;
     private bool battleIsOver = false;
 
     public void GetUnitReferences()
@@ -126,6 +127,9 @@ public class TurnSystem : MonoBehaviour
     {
         //refresh wait time of the unit that has just ended its turn
         theUnit.SetCurrentWaitTime(1000f/theUnit.GetFinalSpd());
+        //make sure the unit is at the end of list
+        WaitTimeSorted_Units.Remove(theUnit);
+        WaitTimeSorted_Units.Add(theUnit);
         //begin a new turn
         TurnProcess();
     }
@@ -136,18 +140,29 @@ public class TurnSystem : MonoBehaviour
         theUnit.SetCurrentWaitTime(1000f);
         ActiveUnits.Remove(theUnit);
 
+        //if the dead unit is enemy, hide their sprite
+        if(theUnit.GetUnitType() == MyEnum.UnitType.Enemy)
+        {
+            theUnit.Toggle_UnitBattleSprite(false);
+        }
+
         //also might want to check if the game is over if enemy wins, or battle is over if player wins
         if(battleUnitManager.GetEnemyUnits_Alive().Count == 0)
         {
             //player wins
             battleIsOver = true;
             Debug.Log("Player wins");
+            popupManager_Battle = BattleManager.Instance.GetPopupManager_Battle();
+            popupManager_Battle.Open_WinBattlePopup();
+            
         }
         else if(battleUnitManager.GetPlayerUnits_Alive().Count == 0)
         {
             //enemy wins
             battleIsOver = true;
             Debug.Log("Enemy wins");
+            popupManager_Battle = BattleManager.Instance.GetPopupManager_Battle();
+            popupManager_Battle.Open_GameOverPopup();
         }
     }
 
