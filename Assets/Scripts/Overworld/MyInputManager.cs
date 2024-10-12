@@ -129,7 +129,7 @@ public class MyInputManager : MonoBehaviour
         }
         else
         {
-            PlayerInputs.Overworld.Enable();
+            PlayerInputs.Overworld.Disable();
         }
         
     }

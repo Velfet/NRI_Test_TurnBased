@@ -39,6 +39,14 @@ public class GameOverPopup : BasePopup
 
     public void ExitButtonFunction()
     {
-        Application.Quit();
+        #if UNITY_EDITOR
+            UnityEditor.EditorApplication.isPlaying = false; // Stops play mode in the editor
+        #elif UNITY_WEBGL
+            Application.OpenURL(Application.absoluteURL);   //refresh the page
+        #elif UNITY_STANDALONE
+            Application.Quit(); // Quits the application for standalone builds
+        #else
+            Application.Quit(); // A fallback for other platforms
+        #endif
     }
 }

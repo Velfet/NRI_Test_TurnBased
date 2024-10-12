@@ -15,6 +15,13 @@ public class OverworldManager : MonoBehaviour
     //keep track of current enemy encounter that we're fighting
     [SerializeField] private int CurrentEnemyEncounterIndex;
 
+    private MyInputManager myInputManager;
+
+    private void Start()
+    {
+        SceneManager.sceneLoaded += OnSceneLoaded;
+    }
+
     public void UpdateCurrentEnemyEncounterData(List<GameObject> enemyData, int enemyEncounterIndex)
     {
         EnemyEncounter_Data = enemyData;
@@ -67,5 +74,22 @@ public class OverworldManager : MonoBehaviour
     public void UpdateDefeatedStatusOfEnemyEncounter(bool newStatus)
     {
         EnemyEncounterStatuses[CurrentEnemyEncounterIndex] = newStatus;
+    }
+
+    private void OnSceneLoaded(Scene scene, LoadSceneMode mode)
+    {
+        if(scene.name == MyEnum.SceneNames.Overworld.ToString() )
+        {
+            //enable overworld controls and disable battle controls
+            if(myInputManager == null)
+            {
+                myInputManager = MyGameManager.Instance.GetInputManager();
+            }
+
+            myInputManager.Toggle_PlayerOverworldControls(true);
+            myInputManager.Toggle_PlayerBattleControls(false);
+            
+        }
+
     }
 }
